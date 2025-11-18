@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="d-flex justify-content-between mb-3">
+    <h2>{{ project.name }}</h2>
+    <div>
+      <button class="btn btn-outline-primary me-2" hx-get="{% url 'invitations:invite' %}" hx-target="#dialog" data-bs-toggle="modal" data-bs-target="#modal">Invite Member</button>
+      <button class="btn btn-primary" hx-get="{% url 'tickets:ticket_create' project.id %}" hx-target="#dialog" data-bs-toggle="modal" data-bs-target="#modal">Add Ticket</button>
+    </div>
+  </div>
+
+  <div id="board">
+    {% include 'tickets/partials/ticket_list.html' with tickets=tickets project=project %}
+  </div>
+
+{% endblock %}
